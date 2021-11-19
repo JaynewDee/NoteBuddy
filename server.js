@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const api = require('./routes/indexRoute.js');
+const api = require('./controllers/homeRoute.js');
 const PORT = process.env.port || 3001;
 const app = express();
 const {audit} = require('./middleware/audit');
