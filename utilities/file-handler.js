@@ -19,4 +19,5 @@ const readAndAppend = (content, file) => {
           console.error(err);
      }
 }
+
 module.exports = {readFromFile, writeToFile, readAndAppend}

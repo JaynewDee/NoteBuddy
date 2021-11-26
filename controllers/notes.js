@@ -1,23 +1,26 @@
-const test = require('../db/test.json')
+const test = require('../db/notes.json');
 const notes = require('express').Router();
-const {
-     v4: uuidv4
-} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
+
 const {
      readFromFile,
      writeToFile,
      readAndAppend,
 } = require('../utilities/file-handler');
 
-notes.get('/', async (req, res) => {
-     readFromFile('./db/test.json')
+// notes.get('/', (req, res) =>     
+//      res.sendFile(path.join(__dirname, '/public/notes.html')
+//           .catch((err) => console.error(err))
+// ))
+
+notes.get('/', (req, res) => {
+     document.location.replace('/notes')
+     readFromFile('./db/notes.json')
           .then((data) => {
-               res.json(JSON.parse(data))
+               res.json(data)
           })
           .catch((err) => console.error(err))
-     res.sendFile(path.join(__dirname, '/public/notes.html'))
 });
-
 
 notes.get('/:id', (req, res) => {
      const noteId = req.params.id;
@@ -29,9 +32,7 @@ notes.get('/:id', (req, res) => {
                     res.json(item) :
                     res.json('No note with that ID')
           })
+          .catch((err) => console.error(err));
 })
 
-notes.get('/api/notes', (req, res) => {
-     res.redirect('../')
-})
 module.exports = notes;
