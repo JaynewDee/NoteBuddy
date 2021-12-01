@@ -1,4 +1,4 @@
-const test = require('../db/notes.json');
+const notesData = require('../db/notes.json');
 const notes = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 
@@ -14,7 +14,6 @@ const {
 // ))
 
 notes.get('/', (req, res) => {
-     document.location.replace('/notes')
      readFromFile('./db/notes.json')
           .then((data) => {
                res.json(data)
