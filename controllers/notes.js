@@ -1,4 +1,5 @@
-const notesData = require('../db/notes.json');
+const path = require('path')
+const fs = require('fs');
 const notes = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 
@@ -8,30 +9,38 @@ const {
      readAndAppend,
 } = require('../utilities/file-handler');
 
-// notes.get('/', (req, res) =>     
-//      res.sendFile(path.join(__dirname, '/public/notes.html')
-//           .catch((err) => console.error(err))
-// ))
-
 notes.get('/', (req, res) => {
-     readFromFile('./db/notes.json')
-          .then((data) => {
-               res.json(data)
-          })
-          .catch((err) => console.error(err))
+     let notesDB = fs.readFileSync(path.join(__dirname, '../db/db.json'));
+     res.send(notesDB);
 });
 
-notes.get('/:id', (req, res) => {
+notes.post('/', (req, res) => {
+
+     if (req.body) {
+          const {title, text} = req.body;
+          const newNote = {
+               title,
+               text,
+               id: uuidv4(),
+          };
+
+          readAndAppend(newNote, './db/db.json');
+          res.json('Note added successfully!')
+     } else {
+          console.error('Failed to add new note =(')
+     }
+})
+
+notes.delete('/:id', (req, res) => {
      const noteId = req.params.id;
-     readFromFile(test)
+     readFromFile('./db/db.json')
           .then((data) => JSON.parse(data))
           .then((json) => {
-               const item = json.filter((note) => note.id === noteId);
-               return item.length > 0 ?
-                    res.json(item) :
-                    res.json('No note with that ID')
-          })
-          .catch((err) => console.error(err));
+               const update = json.filter((note) => note.id !== noteId)
+               writeToFile('./db/db.json', update);
+               res.json(`Note ${noteId} successfully deleted!`)
+          });
 })
+
 
 module.exports = notes;

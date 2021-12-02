@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Emergence",
+        "text": "Synergy is a measure of the elegantly ordered complexity of elements which can produce new, emergent properties.",
+        "id": "12e53717-c930-4732-99ea-0577caaafcdb"
+    },
+    {
+        "title": "I made a delete route!",
+        "text": "Nice.",
+        "id": "646d8663-5be0-444b-9742-a727cb459c13"
+    },
+    {
+        "title": "Hello",
+        "text": "Hi.",
+        "id": "7745527e-57b6-4fd6-8552-0e19898785ed"
+    },
+    {
+        "title": "Many notes",
+        "text": "Many many",
+        "id": "f35195a7-9378-44be-b3e8-7f01497bd06c"
+    },
+    {
+        "title": "res.send",
+        "text": "Using the res.send() method through Express.js will set the content-type header of the document response as text/html",
+        "id": "6bad9179-4647-4dc0-a80e-0ddb9e37c81c"
+    }
+]

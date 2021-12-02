@@ -1,9 +1,9 @@
 const express = require('express');
-const path = require('path');
 const notesRouter = require('./controllers/notes')
-const home = require('./controllers/homeRoute');
+const homeRouter = require('./controllers/homeRoute');
 const PORT = process.env.port || 3001;
 const app = express();
+
 const {
      audit
 } = require('./middleware/audit');
@@ -15,11 +15,7 @@ app.use(express.urlencoded({
 }));
 app.use(express.static('public'));
 
-app.use('/home', home);
-app.use('/notes', notesRouter);
-
-app.get('/', (req, res) =>
-     res.sendFile(path.join(__dirname, '/public/index.html'))
-);
+app.use('/api/notes', notesRouter);
+app.use('/', homeRouter);
 
 app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT}`));
