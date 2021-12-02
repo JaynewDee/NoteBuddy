@@ -1,7 +1,7 @@
 const express = require('express');
 const notesRouter = require('./controllers/notes')
 const homeRouter = require('./controllers/homeRoute');
-const PORT = process.env.port || 80
+const PORT =  process.env.PORT || 80
 const app = express();
 
 const {
